@@ -70,7 +70,7 @@ You should be able to ping that IP from WSL. If you can't, please run
 $ New-NetFirewallRule -DisplayName "WSL" -Direction Inbound -InterfaceAlias "vEthernet (WSL)" -Action Allow
 ```
 
-as the administrator and try again.
+as the administrator on Windows and try again.
 
 Finally, use
 
