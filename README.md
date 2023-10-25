@@ -38,7 +38,7 @@ Use
 $ sudo apt update && sudo apt install <missing shared libraries> -y
 ```
 
-the collect them.
+to collect them.
 
 For example, if you get
 
@@ -48,7 +48,13 @@ $ ldd ~/.local/lib/python3.8/site-packages/PyQt5/Qt5/plugins/platforms/libqxcb.s
     libxcb-image.so.0 => not found
 ```
 
-, use `sudo apt update && sudo apt install libxcb-icccm4 libxcb-image0 -y` in response.
+, use
+
+```bash
+$ sudo apt update && sudo apt install libxcb-icccm4 libxcb-image0 -y
+```
+
+in response.
 
 The environment I used for develop this is WSL on Windows 11. If you're doing the same, please use
 
