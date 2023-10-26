@@ -9,12 +9,13 @@ class MyWidget(QGroupBox):
         self.ui()
 
     def ui(self):
-        self.setTitle("1. Image Processing")
+        self.setTitle("3. Edge Detection")
         layout = QVBoxLayout()
 
-        button1 = QPushButton("1.1 Color Separation")
-        button2 = QPushButton("1.2 Color Transformation")
-        button3 = QPushButton("1.3 Color Extraction")
+        button1 = QPushButton("3.1 Sobel X")
+        button2 = QPushButton("3.2 Sobel Y")
+        button3 = QPushButton("3.3 Combination and Threshold")
+        button4 = QPushButton("3.4 Gradient Angle")
 
         layout.addSpacing(20)
         layout.addWidget(button1)
@@ -22,6 +23,8 @@ class MyWidget(QGroupBox):
         layout.addWidget(button2)
         layout.addSpacing(30)
         layout.addWidget(button3)
+        layout.addSpacing(30)
+        layout.addWidget(button4)
         layout.addSpacing(20)
 
         self.setLayout(layout)

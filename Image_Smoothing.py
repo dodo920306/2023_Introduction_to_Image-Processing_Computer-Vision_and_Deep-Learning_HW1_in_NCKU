@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QDesktopWidget, QPushButton, QVBoxLayout, QGroupBox
+from PyQt5.QtWidgets import QApplication, QPushButton, QVBoxLayout, QGroupBox
 import sys
 
 
@@ -7,24 +7,22 @@ class MyWidget(QGroupBox):
         super().__init__()
        
         self.ui()
-        screen_geo = QDesktopWidget().screenGeometry()
-        widget_geo = self.geometry()
-        x = (screen_geo.width() - widget_geo.width() // 2) // 2
-        y = (screen_geo.height() - widget_geo.height() // 2) // 2
-        self.move(x, y)
 
     def ui(self):
         self.setTitle("2. Image Smoothing")
         layout = QVBoxLayout()
 
-        button1 = QPushButton("1.1 Gaussian blur")
-        layout.addWidget(button1)
-
+        button1 = QPushButton("2.1 Gaussian blur")
         button2 = QPushButton("2.2 Bilateral filter")
-        layout.addWidget(button2)
-
         button3 = QPushButton("2.3 Median filter")
+
+        layout.addSpacing(20)
+        layout.addWidget(button1)
+        layout.addSpacing(30)
+        layout.addWidget(button2)
+        layout.addSpacing(30)
         layout.addWidget(button3)
+        layout.addSpacing(20)
 
         self.setLayout(layout)
 
