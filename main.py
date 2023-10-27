@@ -1,5 +1,5 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QDesktopWidget, QPushButton, QVBoxLayout, QGroupBox, QHBoxLayout
-from PyQt5.QtCore import QRect
+from PyQt5.QtWidgets import QApplication, QWidget, QDesktopWidget, QPushButton, QVBoxLayout, QGroupBox, QHBoxLayout, QFileDialog, QLabel
+from PyQt5.QtCore import Qt
 from Image_Processing import MyWidget as GroupBox1
 from Image_Smoothing import MyWidget as GroupBox2
 from Edge_Detection import MyWidget as GroupBox3
@@ -15,8 +15,8 @@ class MyWidget(QWidget):
         self.ui()
         screen_geo = QDesktopWidget().screenGeometry()
         widget_geo = self.geometry()
-        x = (screen_geo.width() - 2 * widget_geo.width())
-        y = (screen_geo.height() - 2 * widget_geo.height())
+        x = (screen_geo.width() - widget_geo.width()) // 2 - 15
+        y = (screen_geo.height() - widget_geo.height()) // 2 - 175
         self.move(x, y)
 
     def ui(self):
@@ -26,7 +26,9 @@ class MyWidget(QWidget):
         layout3 = QVBoxLayout()
 
         button1 = QPushButton("Load Image 1")
+        self.label1 = QLabel()
         button2 = QPushButton("Load Image 2")
+        self.label2 = QLabel()
 
         groupBox1 = GroupBox1()
         groupBox2 = GroupBox2()
@@ -35,7 +37,10 @@ class MyWidget(QWidget):
         groupBox5 = GroupBox5()
 
         layout1.addWidget(button1)
+        layout1.addWidget(self.label1)
         layout1.addWidget(button2)
+        layout1.addWidget(self.label2)
+        layout1.setAlignment(Qt.AlignVCenter)
 
         layout2.addWidget(groupBox1)
         layout2.addWidget(groupBox2)
@@ -43,6 +48,7 @@ class MyWidget(QWidget):
         
         layout3.addWidget(groupBox4)
         layout3.addWidget(groupBox5)
+        layout3.setAlignment(Qt.AlignTop)
 
         mainLayout.addLayout(layout1)
         mainLayout.addSpacing(20)
@@ -52,6 +58,14 @@ class MyWidget(QWidget):
         mainLayout.setContentsMargins(50, 20, 50, 20)
 
         self.setLayout(mainLayout)
+
+        button1.clicked.connect(self.load_image)
+
+    def load_image(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.ReadOnly
+        filename, _ = QFileDialog.getOpenFileName(self, "Select an Image", "", "Images (*.png *.jpg)", options=options)
+        self.label1.setText(filename.split('/')[-1])
 
 
 if __name__ == '__main__':

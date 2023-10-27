@@ -44,14 +44,12 @@ class MyWidget(QGroupBox):
         layout1.addWidget(label2_1)
         layout1.addWidget(label3_1)
         layout1.addWidget(label4_1)
+        layout1.setAlignment(Qt.AlignTop)
 
-        layout2.addSpacing(26)
+
         layout2.addWidget(input1)
-        layout2.addSpacing(46)
         layout2.addWidget(input2)
-        layout2.addSpacing(47)
         layout2.addWidget(input3)
-        layout2.addSpacing(46)
         layout2.addWidget(input4)
         layout2.setAlignment(Qt.AlignTop)
 
@@ -59,6 +57,7 @@ class MyWidget(QGroupBox):
         layout3.addWidget(label2_2)
         layout3.addWidget(label3_2)
         layout3.addWidget(label4_2)
+        layout3.setAlignment(Qt.AlignTop)
         
         layout.addLayout(layout1)
         layout.addSpacing(30)
@@ -66,7 +65,9 @@ class MyWidget(QGroupBox):
         layout.addLayout(layout3)
 
         mainLayout.addLayout(layout)
+        mainLayout.addSpacing(10)
         mainLayout.addWidget(button)
+        mainLayout.setAlignment(Qt.AlignTop)
 
         self.setLayout(mainLayout)
 

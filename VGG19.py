@@ -10,7 +10,7 @@ class MyWidget(QGroupBox):
         self.ui()
 
     def ui(self):
-        self.setTitle("3. Edge Detection")
+        self.setTitle("5. VGG19")
         layout = QVBoxLayout()
 
         button0 = QPushButton("Load Image")
@@ -35,6 +35,7 @@ class MyWidget(QGroupBox):
         layout.addWidget(button4)
         layout.addWidget(label)
         layout.addWidget(image)
+        layout.addSpacing(200)
 
         self.setLayout(layout)
 
