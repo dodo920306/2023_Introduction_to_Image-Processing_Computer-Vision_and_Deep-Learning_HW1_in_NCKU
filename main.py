@@ -38,6 +38,7 @@ class MyWidget(QWidget):
 
         layout1.addWidget(button1)
         layout1.addWidget(self.label1)
+        layout1.addSpacing(20)
         layout1.addWidget(button2)
         layout1.addWidget(self.label2)
         layout1.setAlignment(Qt.AlignVCenter)
@@ -59,13 +60,20 @@ class MyWidget(QWidget):
 
         self.setLayout(mainLayout)
 
-        button1.clicked.connect(self.load_image)
+        button1.clicked.connect(self.load_image1)
+        button2.clicked.connect(self.load_image2)
 
-    def load_image(self):
+    def load_image1(self):
         options = QFileDialog.Options()
         options |= QFileDialog.ReadOnly
         filename, _ = QFileDialog.getOpenFileName(self, "Select an Image", "", "Images (*.png *.jpg)", options=options)
         self.label1.setText(filename.split('/')[-1])
+
+    def load_image2(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.ReadOnly
+        filename, _ = QFileDialog.getOpenFileName(self, "Select an Image", "", "Images (*.png *.jpg)", options=options)
+        self.label2.setText(filename.split('/')[-1])
 
 
 if __name__ == '__main__':

@@ -40,9 +40,13 @@ class MyWidget(QGroupBox):
 
         button = QPushButton("4. Transforms")
 
+        layout1.addSpacing(3)
         layout1.addWidget(label1_1)
+        layout1.addSpacing(9)
         layout1.addWidget(label2_1)
+        layout1.addSpacing(9)
         layout1.addWidget(label3_1)
+        layout1.addSpacing(9)
         layout1.addWidget(label4_1)
         layout1.setAlignment(Qt.AlignTop)
 
@@ -53,9 +57,13 @@ class MyWidget(QGroupBox):
         layout2.addWidget(input4)
         layout2.setAlignment(Qt.AlignTop)
 
+        layout3.addSpacing(3)
         layout3.addWidget(label1_2)
+        layout3.addSpacing(9)
         layout3.addWidget(label2_2)
+        layout3.addSpacing(9)
         layout3.addWidget(label3_2)
+        layout3.addSpacing(9)
         layout3.addWidget(label4_2)
         layout3.setAlignment(Qt.AlignTop)
         
