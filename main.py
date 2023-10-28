@@ -26,9 +26,9 @@ class MyWidget(QWidget):
         layout3 = QVBoxLayout()
 
         button1 = QPushButton("Load Image 1")
-        self.label1 = QLabel()
+        self.label1 = QLabel("No image loaded")
         button2 = QPushButton("Load Image 2")
-        self.label2 = QLabel()
+        self.label2 = QLabel("No image loaded")
 
         self.groupBox1 = GroupBox1()
         self.groupBox2 = GroupBox2()
@@ -67,14 +67,19 @@ class MyWidget(QWidget):
         options = QFileDialog.Options()
         options |= QFileDialog.ReadOnly
         filename, _ = QFileDialog.getOpenFileName(self, "Select an Image", "", "Images (*.png *.jpg)", options=options)
-        self.label1.setText(filename.split('/')[-1])
-        self.groupBox1.filename = filename
+        if filename != "":
+            self.label1.setText(filename.split('/')[-1])
+            self.groupBox1.filename1 = filename
+            self.groupBox2.filename1 = filename
 
     def load_image2(self):
         options = QFileDialog.Options()
         options |= QFileDialog.ReadOnly
-        self.filename2, _ = QFileDialog.getOpenFileName(self, "Select an Image", "", "Images (*.png *.jpg)", options=options)
-        self.label2.setText(self.filename2.split('/')[-1])
+        filename, _ = QFileDialog.getOpenFileName(self, "Select an Image", "", "Images (*.png *.jpg)", options=options)
+        if filename != "":
+            self.label2.setText(filename.split('/')[-1])
+            self.groupBox1.filename2 = filename
+            self.groupBox2.filename2 = filename
 
 
 if __name__ == '__main__':
