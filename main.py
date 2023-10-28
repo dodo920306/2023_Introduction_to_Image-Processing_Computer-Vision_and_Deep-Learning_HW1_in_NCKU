@@ -30,11 +30,11 @@ class MyWidget(QWidget):
         button2 = QPushButton("Load Image 2")
         self.label2 = QLabel()
 
-        groupBox1 = GroupBox1()
-        groupBox2 = GroupBox2()
-        groupBox3 = GroupBox3()
-        groupBox4 = GroupBox4()
-        groupBox5 = GroupBox5()
+        self.groupBox1 = GroupBox1()
+        self.groupBox2 = GroupBox2()
+        self.groupBox3 = GroupBox3()
+        self.groupBox4 = GroupBox4()
+        self.groupBox5 = GroupBox5()
 
         layout1.addWidget(button1)
         layout1.addWidget(self.label1)
@@ -43,12 +43,12 @@ class MyWidget(QWidget):
         layout1.addWidget(self.label2)
         layout1.setAlignment(Qt.AlignVCenter)
 
-        layout2.addWidget(groupBox1)
-        layout2.addWidget(groupBox2)
-        layout2.addWidget(groupBox3)
+        layout2.addWidget(self.groupBox1)
+        layout2.addWidget(self.groupBox2)
+        layout2.addWidget(self.groupBox3)
         
-        layout3.addWidget(groupBox4)
-        layout3.addWidget(groupBox5)
+        layout3.addWidget(self.groupBox4)
+        layout3.addWidget(self.groupBox5)
         layout3.setAlignment(Qt.AlignTop)
 
         mainLayout.addLayout(layout1)
@@ -68,12 +68,13 @@ class MyWidget(QWidget):
         options |= QFileDialog.ReadOnly
         filename, _ = QFileDialog.getOpenFileName(self, "Select an Image", "", "Images (*.png *.jpg)", options=options)
         self.label1.setText(filename.split('/')[-1])
+        self.groupBox1.filename = filename
 
     def load_image2(self):
         options = QFileDialog.Options()
         options |= QFileDialog.ReadOnly
-        filename, _ = QFileDialog.getOpenFileName(self, "Select an Image", "", "Images (*.png *.jpg)", options=options)
-        self.label2.setText(filename.split('/')[-1])
+        self.filename2, _ = QFileDialog.getOpenFileName(self, "Select an Image", "", "Images (*.png *.jpg)", options=options)
+        self.label2.setText(self.filename2.split('/')[-1])
 
 
 if __name__ == '__main__':

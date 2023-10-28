@@ -7,3 +7,5 @@ Torchvision==0.16.0
 Torchsummary==1.5.1
 Tensorboard==2.14.0
 Pillow==10.1.0
+# Add numpy
+numpy==1.24.4
