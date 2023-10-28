@@ -71,6 +71,8 @@ class MyWidget(QWidget):
             self.label1.setText(filename.split('/')[-1])
             self.groupBox1.filename1 = filename
             self.groupBox2.filename1 = filename
+            self.groupBox3.filename1 = filename
+            self.groupBox4.filename1 = filename
 
     def load_image2(self):
         options = QFileDialog.Options()
@@ -78,7 +80,7 @@ class MyWidget(QWidget):
         filename, _ = QFileDialog.getOpenFileName(self, "Select an Image", "", "Images (*.png *.jpg)", options=options)
         if filename != "":
             self.label2.setText(filename.split('/')[-1])
-            self.groupBox1.filename2 = filename
+            # self.groupBox1.filename2 = filename
             self.groupBox2.filename2 = filename
 
 
