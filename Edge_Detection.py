@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QApplication, QPushButton, QVBoxLayout, QGroupBox
 import sys, cv2, numpy
 
 sobel_x = numpy.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
-sobel_y = numpy.flipud(numpy.fliplr(sobel_x))
+sobel_y = sobel_x.T
 
 class MyWidget(QGroupBox):
     def __init__(self):
@@ -40,14 +40,14 @@ class MyWidget(QGroupBox):
         try:
             img = cv2.imread(self.filename1)
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            img = cv2.GaussianBlur(img, (3, 3), 0)
+            img = cv2.GaussianBlur(img, (5, 5), 0)
             zero_padding = numpy.zeros((img.shape[0] + 2, img.shape[1] + 2))
             zero_padding[1:-1, 1:-1] = img
 
             for x in range(img.shape[0]):
                 for y in range(img.shape[1]):
-                    img[x, y] = (zero_padding[x : x + 3, y : y + 3] * sobel_x).sum()
-            cv2.imshow('sobel_x', img)
+                    img[x, y] = (((zero_padding[x : x + 3, y : y + 3] * sobel_x).sum()) ** 2) ** 0.5
+            cv2.imshow('sobel_x', cv2.normalize(img, None, 0, 255, cv2.NORM_MINMAX))
         except AttributeError as e:
             # Image not loaded.
             pass
@@ -56,14 +56,14 @@ class MyWidget(QGroupBox):
         try:
             img = cv2.imread(self.filename1)
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            img = cv2.GaussianBlur(img, (3, 3), 0)
+            img = cv2.GaussianBlur(img, (5, 5), 0)
             zero_padding = numpy.zeros((img.shape[0] + 2, img.shape[1] + 2))
             zero_padding[1:-1, 1:-1] = img
 
             for x in range(img.shape[0]):
                 for y in range(img.shape[1]):
-                    img[x, y] = (zero_padding[x : x + 3, y : y + 3] * sobel_y).sum()
-            cv2.imshow('sobel_y', img)
+                    img[x, y] = (((zero_padding[x : x + 3, y : y + 3] * sobel_y).sum()) ** 2) ** 0.5
+            cv2.imshow('sobel_y', cv2.normalize(img, None, 0, 255, cv2.NORM_MINMAX))
         except AttributeError as e:
             # Image not loaded.
             pass
@@ -72,7 +72,7 @@ class MyWidget(QGroupBox):
         try:
             img = cv2.imread(self.filename1)
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            img = cv2.GaussianBlur(img, (3, 3), 0)
+            img = cv2.GaussianBlur(img, (5, 5), 0)
             zero_padding = numpy.zeros((img.shape[0] + 2, img.shape[1] + 2))
             zero_padding[1:-1, 1:-1] = img
 
@@ -94,7 +94,7 @@ class MyWidget(QGroupBox):
         try:
             img = cv2.imread(self.filename1)
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            img = cv2.GaussianBlur(img, (3, 3), 0)
+            img = cv2.GaussianBlur(img, (5, 5), 0)
             zero_padding = numpy.zeros((img.shape[0] + 2, img.shape[1] + 2))
             zero_padding[1:-1, 1:-1] = img
             gradient_angle = numpy.zeros_like(img)
