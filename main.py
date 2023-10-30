@@ -15,7 +15,7 @@ class MyWidget(QWidget):
         self.ui()
         screen_geo = QDesktopWidget().screenGeometry()
         widget_geo = self.geometry()
-        x = (screen_geo.width() - widget_geo.width()) // 2 - 15
+        x = (screen_geo.width() - widget_geo.width()) // 2 - 20
         y = (screen_geo.height() - widget_geo.height()) // 2 - 175
         self.move(x, y)
 
