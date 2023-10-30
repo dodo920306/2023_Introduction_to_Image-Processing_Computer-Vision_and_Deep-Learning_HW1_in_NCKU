@@ -97,14 +97,14 @@ class MyWidget(QGroupBox):
             img = cv2.GaussianBlur(img, (5, 5), 0)
             zero_padding = numpy.zeros((img.shape[0] + 2, img.shape[1] + 2))
             zero_padding[1:-1, 1:-1] = img
-            gradient_angle = numpy.zeros_like(img)
+            gradient_angle = numpy.zeros_like(img, dtype='uint16')
 
             for x in range(img.shape[0]):
                 for y in range(img.shape[1]):
                     res_x = (zero_padding[x : x + 3, y : y + 3] * sobel_x).sum()
                     res_y = (zero_padding[x : x + 3, y : y + 3] * sobel_y).sum()
                     img[x, y] = (res_x ** 2 + res_y ** 2) ** 0.5
-                    gradient_angle[x, y] = (numpy.arctan2(res_y, res_x) + numpy.pi) * 180 / numpy.pi
+                    gradient_angle[x, y] = (numpy.arctan2(res_y, res_x)) * 180 / numpy.pi + 180
             img = cv2.normalize(img, None, 0, 255, cv2.NORM_MINMAX)
 
             mask1 = ((gradient_angle >= 120) & (gradient_angle <= 180)).astype(numpy.uint8) * 255
