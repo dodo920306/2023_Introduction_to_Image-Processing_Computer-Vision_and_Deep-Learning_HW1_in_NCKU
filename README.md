@@ -216,4 +216,4 @@ run
 $ python VGG19.py
 ```
 
-and type 1 to get this part of UI independently, or type 2 to train your own model.
+and type 1 to get this part of UI independently, or type 2 to train your own model with the CIFAR-10 dataset.
