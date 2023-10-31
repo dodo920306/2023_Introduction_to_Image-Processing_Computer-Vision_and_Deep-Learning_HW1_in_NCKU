@@ -148,7 +148,7 @@ if __name__ == '__main__':
             testloader = torch.utils.data.DataLoader(testset, batch_size=64, shuffle=False, num_workers=4)
 
             criterion = torch.nn.CrossEntropyLoss()
-            optimizer = torch.optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
+            optimizer = torch.optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
 
             num_epochs = 80
             best_accuracy = 0.0
