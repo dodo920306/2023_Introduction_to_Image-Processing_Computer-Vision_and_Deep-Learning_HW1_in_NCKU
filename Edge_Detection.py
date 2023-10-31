@@ -109,6 +109,8 @@ class MyWidget(QGroupBox):
             mask1 = ((gradient_angle >= 120) & (gradient_angle <= 180)).astype(numpy.uint8) * 255
             mask2 = ((gradient_angle >= 210) & (gradient_angle <= 330)).astype(numpy.uint8) * 255
 
+            img = cv2.normalize(img, None, 0, 255, cv2.NORM_MINMAX)
+
             cv2.imshow('Result 1', cv2.bitwise_and(img, mask1))
             cv2.imshow('Result 2', cv2.bitwise_and(img, mask2))
         except AttributeError as e:
