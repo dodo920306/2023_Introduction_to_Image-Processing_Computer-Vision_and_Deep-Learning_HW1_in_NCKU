@@ -147,7 +147,20 @@ if __name__ == '__main__':
             testset = CIFAR10(root='./data', train=False, download=True, transform=transforms)
             testloader = torch.utils.data.DataLoader(testset, batch_size=64, shuffle=False, num_workers=4)
 
+            # Cross entropy loss is commonly used as a loss function in classification problems.
+            # It measures the difference between the predicted probability distribution (output of the neural network) 
+            # and the true probability distribution (the ground truth labels). 
+            # The goal during training is to minimize this loss.
             criterion = torch.nn.CrossEntropyLoss()
+
+            # stochastic gradient descent (SGD) optimizer.
+            # model.parameters() specifies the parameters (weights and biases) of the neural network that 
+            # the optimizer will update during training.
+            # lr sets the learning rate, which determines the step size that the optimizer takes during the optimization process.
+            # A smaller learning rate can result in slower but more accurate convergence, 
+            # while a larger learning rate can speed up the convergence but may lead to overshooting.
+            # momentum adds a momentum term to the update, which helps accelerate the optimization in the relevant direction and dampens oscillations.
+            # Momentum is a hyperparameter that improves the convergence speed and helps escape local minima.
             optimizer = torch.optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
 
             num_epochs = 80
@@ -164,16 +177,35 @@ if __name__ == '__main__':
                 total = 0
                 for inputs, labels in trainloader:
                     inputs, labels = inputs.to(device), labels.to(device)
+                    
+                    # Before computing the gradients for a new minibatch, 
+                    # it is common to zero out the gradients from the previous minibatch.
+                    # This is done to prevent the gradients from accumulating across multiple batches.
+                    # If you don't zero out the gradients, the new gradients will be added to the existing gradients, 
+                    # and it might lead to incorrect updates during optimization.
                     optimizer.zero_grad()
+
+                    # Obtain the model's predictions (outputs) for the input data.
                     outputs = model(inputs)
                     loss = criterion(outputs, labels)
+
+                    # Compute the gradients of the loss with respect to the model parameters, enabling backpropagation.
                     loss.backward()
+
+                    # Update the model parameters using the optimizer and the computed gradients.
                     optimizer.step()
 
+                    # .item() converts the result to a Python number.
                     running_loss += loss.item()
+                    # Extracts the class predictions by selecting the index with the maximum value
+                    # returns a tuple containing two tensors: 
+                    # the maximum value along dimension 1 (the predicted class scores) 
+                    # and the index of the maximum value (the predicted class labels).
                     _, predicted = outputs.max(1)
                     total += labels.size(0)
                     correct += predicted.eq(labels).sum().item()
+
+                # average training loss
                 train_loss = running_loss / len(trainloader)
                 train_accuracy = 100.0 * correct / total
 
@@ -182,6 +214,9 @@ if __name__ == '__main__':
                 running_loss = 0.0
                 correct = 0
                 total = 0
+
+                # PyTorch operations won't build up a computation graph for automatic differentiation.
+                # This is done for efficiency during evaluation since you don't need to compute gradients for the parameters.
                 with torch.no_grad():
                     for inputs, labels in testloader:
                         inputs, labels = inputs.to(device), labels.to(device)
