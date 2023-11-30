@@ -46,8 +46,9 @@ class MyWidget(QGroupBox):
 
             for x in range(img.shape[0]):
                 for y in range(img.shape[1]):
-                    img[x, y] = abs(numpy.sum(zero_padding[x : x + 3, y : y + 3] * sobel_x))
-            cv2.imshow('sobel_x', cv2.normalize(img, None, 0, 255, cv2.NORM_MINMAX))
+                    temp = abs(numpy.sum(zero_padding[x : x + 3, y : y + 3] * sobel_x))
+                    img[x, y] = 255 if temp > 255 else temp
+            cv2.imshow('sobel_x', img)
         except AttributeError as e:
             # Image not loaded.
             pass
@@ -62,8 +63,9 @@ class MyWidget(QGroupBox):
 
             for x in range(img.shape[0]):
                 for y in range(img.shape[1]):
-                    img[x, y] = abs(numpy.sum(zero_padding[x : x + 3, y : y + 3] * sobel_y))
-            cv2.imshow('sobel_y', cv2.normalize(img, None, 0, 255, cv2.NORM_MINMAX))
+                    temp = abs(numpy.sum(zero_padding[x : x + 3, y : y + 3] * sobel_y))
+                    img[x, y] = 255 if temp > 255 else temp
+            cv2.imshow('sobel_y', img)
         except AttributeError as e:
             # Image not loaded.
             pass
