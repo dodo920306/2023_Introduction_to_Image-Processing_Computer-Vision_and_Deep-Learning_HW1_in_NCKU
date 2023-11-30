@@ -52,7 +52,7 @@ class MyWidget(QGroupBox):
             img = cv2.imread(self.filename1)
             cv2.imshow('cv2.COLOR_BGR2GRAY for img 1', cv2.cvtColor(img, cv2.COLOR_BGR2GRAY))
             b, g, r = cv2.split(img)
-            avg = b / 3 + g / 3 + r / 3
+            avg = (b / 3 + g / 3 + r / 3).astype(numpy.uint8)
             cv2.imshow('Average weighted for img 1', avg)
         except AttributeError:
             # Image not loaded.
