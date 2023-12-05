@@ -100,7 +100,7 @@ class MyWidget(QGroupBox):
 
             with torch.no_grad():
                 # .unsqueeze(0) method is used to add a new dimension at the specified position in a tensor.
-                # For consistency.
+                # Here it's for adding the batch dimension for consistency since the model expects (1, 3, 32, 32) not (3, 32, 32).
                 output = model(transform(img).to(device).unsqueeze(0))
 
             _, predicted = output.max(1)
