@@ -18,7 +18,7 @@ This is a repo for solving HW1 in 2023 Introduction to Image Processing, Compute
 Use
 
 ```bash
-$ git clone https://github.com/dodo920306/2023_Introduction_to_Image_Processing-Computer_Vision-and_Deep_Learning_HW1_in_NCKU.git
+$ git clone https://github.com/dodo920306/2023_introduction_to_image-processing_computer-vision_and_deep-learning_hw1_in_ncku.git
 $ pip install -r requirements.txt
 ```
 
