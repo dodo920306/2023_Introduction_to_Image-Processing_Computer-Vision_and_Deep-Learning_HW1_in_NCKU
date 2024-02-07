@@ -18,7 +18,7 @@ Implementation of a personal solution of the first homework in Introduction to I
 Use
 
 ```bash
-$ git clone https://github.com/dodo920306/2023_introduction_to_image-processing_computer-vision_and_deep-learning_hw1_in_ncku.git
+$ git clone https://github.com/dodo920306/2023_opencvdl_hw1_in_ncku.git
 $ pip install -r requirements.txt
 ```
 
