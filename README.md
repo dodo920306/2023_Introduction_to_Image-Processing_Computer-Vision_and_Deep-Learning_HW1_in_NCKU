@@ -1,6 +1,6 @@
 # 2023_Introduction_to_Image-Processing_Computer-Vision_and_Deep-Learning_HW1_in_NCKU
 
-This is a repo for solving HW1 in 2023 Introduction to Image Processing, Computer Vision, and Deep Learning courses in NCKU.
+Implementation of a personal solution of the first homework in Introduction to Image Processing, Computer Vision, and Deep Learning courses in NCKU CSIE, 2023.
 
 ## Prerequisite
 
