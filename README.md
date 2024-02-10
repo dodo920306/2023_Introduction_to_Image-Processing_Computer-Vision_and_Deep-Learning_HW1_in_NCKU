@@ -185,7 +185,7 @@ to get this part of UI independently.
 
 There are 5 buttons can be clicked providing 4 different features:
 
-1. show Augmented Images
+1. Show Augmented Images
 
     Click the button to get a popup window showing the augmented images with labels (filenames) from the `Q5_image\Q5_1` directory under the project directory with 9 pictures inside.
 
